@@ -39,7 +39,7 @@
            <a href="#" class="nav-link active">
              <i class="nav-icon fas fa-tachometer-alt"></i>
              <p>
-               Dashboard
+               Dashboard.
                <!-- <i class="right fas fa-angle-left"></i> -->
              </p>
            </a>
@@ -49,7 +49,7 @@
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-city"></i>
              <p>
-               Cities
+               Cities.
                <i class="fas fa-angle-left right"></i>
                <span class="badge badge-info right">3</span>
              </p>
@@ -159,7 +159,7 @@
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-user-ninja"></i>
              <p>
-               Coaches
+               Coaches.
                <i class="fas fa-angle-left right"></i>
                <span class="badge badge-info right">2</span>
              </p>
@@ -185,7 +185,7 @@
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-user"></i>
              <p>
-               Users
+               Users.
                <i class="fas fa-angle-left right"></i>
              </p>
            </a>
