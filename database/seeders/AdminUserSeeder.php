@@ -22,6 +22,7 @@ class AdminUserSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'gender' => 'male',
+            'profile_image' => 'https://via.placeholder.com/200x200.png/000000?text=admin',
             'password' => bcrypt('123456')
         ]);
 
