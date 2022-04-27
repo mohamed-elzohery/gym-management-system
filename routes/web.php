@@ -18,7 +18,7 @@ use App\Http\Controllers\NotfoundController;
 */
 
 Route::get('/home', function () {
-    return view('welcome');
+    return view('home');
 })->name('home')->middleware('auth');
 
 Route::get('/city', function () {
