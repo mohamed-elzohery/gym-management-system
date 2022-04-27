@@ -21,7 +21,10 @@
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- datatables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <!-- Styles -->
     <style>
         .dataTables_wrapper .dataTables_length {
@@ -53,6 +56,7 @@
 
 
     <!-- REQUIRED SCRIPTS -->
+    <div id="sidebar-overlay"></div>
 
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js')}}"></script>
@@ -66,7 +70,7 @@
     <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- datatable js -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
+    <script src="dist/js/main.js"></script>
 </body>
 
 </html>
