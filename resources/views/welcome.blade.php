@@ -34,7 +34,7 @@
             </div>
             {{-- # ======================================= # Cities Managers # ======================================= # --}}
             <div class="col-lg-3 col-6">
-                <a href="{{ route('cityManager.list') }}">
+                <a href="">
                     <div class="small-box bg-secondary">
                         <div class="inner">
                             <h3>{{ $citiesManagers }}<sup style="font-size: 20px"></sup></h3>
@@ -51,7 +51,7 @@
             {{-- # ======================================= # Gyms # ======================================= # --}}
             @role('admin|cityManager')
             <div class="col-lg-3 col-6">
-                <a href="{{ route('gym.list') }}">
+                <a href="#">
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>{{ $gyms }}</h3>
@@ -66,7 +66,7 @@
             {{-- # ======================================= # Gyms Managers # ======================================= # --}}
             <div class="col-lg-3 col-6">
 
-                <a href="{{ route('gymManager.list') }}">
+                <a href="#">
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>{{ $gymsManagers }}<sup style="font-size: 20px"></sup></h3>
@@ -84,7 +84,7 @@
             {{-- # ======================================= # Coaches # ======================================= # --}}
             @role('admin|cityManager|gymManager')
             <div class="col-lg-3 col-6">
-                <a href="{{ route('coach.list') }}">
+                <a href="#">
                     <div class="small-box bg-light">
                         <div class="inner">
                             <h3>{{ $coaches }}<sup style="font-size: 20px"></sup></h3>
@@ -98,7 +98,7 @@
             </div>
             {{-- # ======================================= # Users # ======================================= # --}}
             <div class="col-lg-3 col-6">
-                <a href="{{ route('allUsers.list') }}">
+                <a href="#">
                     <div class="small-box bg-dark">
                         <div class="inner">
                             <h3>{{ $users }}</h3>

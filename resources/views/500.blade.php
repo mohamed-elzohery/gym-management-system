@@ -9,7 +9,7 @@
             <h3><i class="fas fa-exclamation-triangle text-danger"></i> Oops! Something went wrong.</h3>
             <p>
                 We will work on fixing that right away.
-                Meanwhile, you may <a href="{{ url('/') }}" >return to dashboard</a> or try using the search form.
+                Meanwhile, you may <a href="{{ url('/') }}">return to dashboard</a> or try using the search form.
             </p>
         </div>
     </div>
