@@ -4,7 +4,7 @@ use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotfoundController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +32,4 @@ Route::get('/city', function () {
 Auth::routes();
 Route::get('/register', [NotfoundController::class, 'unAuth'])->name('500');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');;
