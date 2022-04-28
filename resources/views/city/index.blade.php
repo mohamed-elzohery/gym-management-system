@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,40 +33,18 @@
                     </button>
                 </div>
             </div>
-            <div class="card-body p-0">
-                <table class="table table-striped projects" id="proj">
+            <div class="card-body p-0 ">
+                <table class="table table-striped data-table" id="proj">
                     <thead>
                         <tr>
                             <th class="project-state"> ID </th>
                             <th class="project-state"> City Name</th>
                             <th class="project-state"> City Manager Name</th>
-                            <th class="project-state">Created at</th>
-                            <th class="project-state"></th>
+                            <th class="project-state"> Created At</th>
+                            <th class="project-state"> Action</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-
-                            <td class="project-state">hmada</td>
-                            <td class="project-state">hmada</td>
-
-                            <td class="project-state">This city has no Manager</td>
-
-                            <td class="project-state">hmada</td>
-
-                            <td class="project-state">hmada</td>
-                            <td class="project-actions project-state">
-                                <a class="btn btn-info btn-sm">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                                <a class="btn btn-warning btn-sm text-white">
-                                    <i class="fas fa-pencil-alt"></i></a>
-
-                                <a href="javascript:void(0)" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -74,25 +53,38 @@
         <!-- /.card -->
     </section>
 </div>
-<!-- /.content-wrapper -->
-<script>
-    function deleteCity(id, manager) {
-        if (manager > 0) {
-            alert('This city has a manager so it can\'t be deleted')
-        } else {
-            if (confirm("Do you want to delete this record?")) {
-                $.ajax({
-                    url: '/cities/' + id,
-                    type: 'DELETE',
-                    data: {
-                        _token: $("input[name=_token]").val()
-                    },
-                    success: function(response) {
-                        $("#cid" + id).remove();
-                    }
-                });
-            }
-        }
-    }
+@endsection
+@section('scripts')
+<script type="text/javascript">
+    $(function() {
+
+        var table = $('.data-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('city.index') }}",
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'Manager Name',
+                    name: 'Manager Name'
+                },
+                {
+                    data: 'Created At',
+                    name: 'Created At'
+                },
+                {
+                    data: 'action',
+                    name: 'action'
+                },
+            ]
+        });
+
+    });
 </script>
 @endsection

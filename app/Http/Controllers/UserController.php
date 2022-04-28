@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\UserDataTable;
 use App\Models\User;
 
 use DataTables;
