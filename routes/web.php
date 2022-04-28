@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Auth;
@@ -39,12 +39,18 @@ Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.
 
 
 
-// ################################# Auth ########################################
+// ################################# Auth ##################################################
 Auth::routes();
 Route::get('/register', [NotfoundController::class, 'unAuth'])->name('500')->middleware('auth');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('auth');;
-// #########################################################################
+// #########################################################################################
+
+// ############################## Payment ##################################################
+Route::get('/PaymentPackage/stripe/{package}', [StripeController::class, 'stripe'])->name('PaymentPackage.stripe')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager|coach');
+Route::post('/PaymentPackage/stripe', [StripeController::class, 'stripePost'])->name('stripe.post')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager|coach');
+Route::get('/PaymentPackage/purchase_history', [StripeController::class, 'index'])->name('PaymentPackage.purchase_history')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager|coach');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager|coach');
 
 // ######################################Packages###########################################
 Route::get('/trainingPackeges/index', [TrainingPackagesController::class, 'index'])->name('trainingPackeges.listPackeges')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');

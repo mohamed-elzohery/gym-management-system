@@ -18,10 +18,10 @@ class StripeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function stripe()
+    public function stripe($package)
     {
-
-        return view('PaymentPackage.stripe');
+        $allPack = TrainingPackage::findorfail($package);
+        return view('trainingPackeges.stripe', ['package' => $allPack]);
     }
 
     /**
@@ -71,7 +71,7 @@ class StripeController extends Controller
     public function index()
     {
         $revenues = Revenue::all();
-        return view('PaymentPackage.purchase_history', [
+        return view('trainingPackeges.purchase_history', [
             'revenues' => $revenues,
         ]);
     }
