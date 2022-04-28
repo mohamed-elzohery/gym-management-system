@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotfoundController;
 use App\Http\Controllers\TrainingPackagesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,23 +21,29 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home')->middleware('auth');
-
-Route::get('/', function () {
-    return view('home');
-})->name('home')->middleware('auth');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome')->middleware('auth');
 
 
 // ################################# City ########################################
-Route::get('/cities', [CityController::class, 'index'])->name('city.index')->middleware('auth');
+Route::get('/cities', [CityController::class, 'list'])->name('city.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+
+//GET, 	/city/create, 	create, 	city.create
 Route::get('/cities/create', [CityController::class, 'create'])->name('city.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-Route::post('/cities', [CityController::class, 'store'])->name('city.store');
-Route::get('/cities/{city}', [CityController::class, 'show'])->name('city.show');
-Route::get('/cities/{city}/edit', [CityController::class, 'edit'])->name('city.edit');
-Route::put('/cities/{city}', [CityController::class, 'update'])->name('city.update');
-Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('city.destroy');
+//POST, 	/city, 	store,       	city.store
+Route::post('/cities', [CityController::class, 'store'])->name('city.store')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+
+//GET, 	/city/{photo}, 	show,    	city.show
+Route::get('/cities/{cityID}', [CityController::class, 'show'])->name('city.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+
+//GET 	/city/{cityID}/edit 	edit 	city.edit
+Route::get('/cities/{cityID}/edit', [CityController::class, 'edit'])->name('city.edit')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+//PUT/PATCH, 	/city/{cityID}, 	update, 	city.update
+Route::put('/cities/{cityID}', [CityController::class, 'update'])->name('city.update')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+
+//DELETE 	/city/{cityID} 	destroy 	city.destroy
+Route::delete('/cities/{cityID}', [CityController::class, 'destroy'])->name('city.destroy')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+Route::get('/restoredCities', [CityController::class, 'showDeleted'])->name('city.showDeleted')->middleware('auth')->middleware('role:admin');
+Route::get('/restoredCities/{postID}', [CityController::class, 'restore'])->name('city.restored')->middleware('auth')->middleware('role:admin');
 
 
 

@@ -1,23 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.user-layout')
 @section('content')
-<div class="content-wrapper">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Show City</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">City</li>
-                    </ol>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
-
-    <section class="content">
+<div class="content-wrapper pb-4">
+    <div class="container-fluid pt-5">
         <div class="row align-self-center d-flex">
             <div class="col-md-6">
                 <div class="row">
@@ -35,10 +19,10 @@
                     </div>
                     {{-- # ======================================= # Gyms # ======================================= # --}}
                     <div class="col-6">
-                        {{-- <a href="#"> --}}
+                        {{-- <a href="{{ route('gym.list') }}"> --}}
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>{{ $gyms }}<sup style="font-size: 20px"></sup></h3>
+                                <h3>{{ $gyms }}</h3>
                                 <p>Gyms</p>
                             </div>
                             <div class="icon">
@@ -61,7 +45,7 @@
                     </div>
                     {{-- # ======================================= # Coaches # ======================================= # --}}
                     <div class="col-6">
-                        {{-- <a href="#"> --}}
+                        {{-- <a href="{{ route('coach.list') }}"> --}}
                         <div class="small-box bg-success">
                             <div class="inner">
                                 <h3>{{ $coaches }}<sup style="font-size: 20px"></sup></h3>
@@ -104,10 +88,12 @@
                         <h3>{{ $citiesManagers->name }} <sup style="font-size: 20px"></sup></h3>
                         <h3>{{ $citiesManagers->email }} <sup style="font-size: 10px"></sup></h3>
                         @endif
+
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</div>
 </div>
 @endsection
