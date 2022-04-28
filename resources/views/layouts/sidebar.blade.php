@@ -209,25 +209,25 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="pages/layout/top-nav.html" class="nav-link">
+               <a href="{{ route('trainingPackeges.listPackeges') }}" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>List packages.</p>
                </a>
              </li>
              <li class="nav-item">
-               <a href="pages/layout/top-nav.html" class="nav-link">
+               <a href="{{ route('trainingPackeges.creatPackege') }}" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Add a new package.</p>
                </a>
              </li>
              <li class="nav-item">
-               <a href="pages/layout/top-nav.html" class="nav-link">
+               <a href="{{ route('trainingPackeges.show_training_package')}}" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Buy a package.</p>
                </a>
              </li>
              <li class="nav-item">
-               <a href="pages/layout/top-nav.html" class="nav-link">
+               <a href="{{ route('trainingPackeges.editPackege')}}" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>Purchases history.</p>
                </a>
