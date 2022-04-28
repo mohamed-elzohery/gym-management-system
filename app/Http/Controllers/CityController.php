@@ -4,44 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CityRequest;
 use App\Http\Requests\UpdateCityRequest;
-use Illuminate\Http\Request;
 use App\Models\City;
-use App\Models\User;
 use App\Models\Gym;
 use App\Models\Revenue;
-use DataTables;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
-    //
-    public function index(Request $request)
+    #=======================================================================================#
+    #			                          list Function                                   	#
+    #=======================================================================================#
+    public function list()
     {
-        if ($request->ajax()) {
-            $data = City::select('*');
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $showUrl = route('city.show', $row->id);
-                    $btn = '<a href="' . $showUrl . '" class="btn btn-primary btn-sm">View</a>';
-                    $editUrl = route('city.edit', $row->id);
-                    $btn .= '<a href="' . $editUrl . '" class="btn btn-primary btn-sm">Edit</a>';
-                    $deleteUrl = route('city.destroy', $row->id);
-                    $btn .= '<a href="' . $deleteUrl . '" class="btn btn-danger btn-sm">Delete</a>';
-                    return $btn;
-                })
-                ->addColumn('Manager Name', function ($row) {
-                    return User::find($row->manager_id)->name ?? 'No Manager Assigned';
-                })
-                ->addColumn('Created At', function ($row) {
-                    return City::find($row->id)->created_at->format('d - M - Y');
-                })
-
-                ->rawColumns(['action', 'Manager Name', 'Created At'])
-                ->make(true);
+        $allCities = City::all();
+        if (count($allCities) <= 0) { //for empty statement
+            return view('empty');
         }
-        return view('city.index');
+        return view("city.list", ['allCities' => $allCities]);
     }
-
     #=======================================================================================#
     #			                          show Function                                   	#
     #=======================================================================================#
@@ -84,6 +65,29 @@ class CityController extends Controller
         ]);
     }
     #=======================================================================================#
+    #			                          create Function                                   #
+    #=======================================================================================#
+    public function create()
+    {
+        $cityManagers = $this->selectCityManagers();
+        return view("city.create", ['cityManagers' => $cityManagers]);
+    }
+    #=======================================================================================#
+    #			                          store Function                                   #
+    #=======================================================================================#
+    public function store(CityRequest $request)
+    {
+        $requestData = request()->all();
+        if ($requestData['manager_id'] == 'optional') {
+            City::create([
+                'name' => $requestData['name'],
+            ]);
+        } else {
+            City::create($requestData);
+        }
+        return $this->list();
+    }
+    #=======================================================================================#
     #			                          edit Function                                     #
     #=======================================================================================#
     public function edit($cityID)
@@ -92,7 +96,6 @@ class CityController extends Controller
         $cityManagers = $this->selectCityManagers();
         return view('city.edit', ['cityData' => $cityData, 'cityManagers' => $cityManagers]);
     }
-
     #=======================================================================================#
     #			                          edit Function                                     #
     #=======================================================================================#
@@ -108,6 +111,7 @@ class CityController extends Controller
         $flight->save();
         return $this->list();
     }
+
     #=======================================================================================#
     #			                          destroy Function                                  #
     #=======================================================================================#
@@ -136,6 +140,7 @@ class CityController extends Controller
         City::withTrashed()->find($cityID)->restore();
         return $this->showDeleted();
     }
+
     #=======================================================================================#
     #			            private Function used in this controller                        #
     #=======================================================================================#
