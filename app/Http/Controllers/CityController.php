@@ -32,7 +32,6 @@ class CityController extends Controller
                 ->rawColumns(['action', 'Manager Name', 'Created At'])
                 ->make(true);
         }
-
         return view('city.index');
     }
 }
