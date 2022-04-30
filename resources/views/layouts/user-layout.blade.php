@@ -99,9 +99,9 @@
                         </p>
                     </li>
                     <li class="user-footer d-flex justify-content-between">
-                        <div class="pull-left">
+                        {{-- <div class="pull-left">
                             <a href="{{ route('user.admin_profile', auth()->user()->id) }}" class="btn btn-default btn-flat">Profile</a>
-                        </div>
+                        </div> --}}
                         <div class="pull-right">
                             <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">Sign out</a>
@@ -136,9 +136,9 @@
                     <img src="{{asset(auth()->user()->profileImageFile)}}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="{{ route('user.admin_profile', auth()->user()->id) }}" class="d-block">
+                    {{-- <a href="{{ route('user.admin_profile', auth()->user()->id) }}" class="d-block">
                         {{ auth()->user()->name }}
-                    </a>
+                    </a> --}}
                 </div>
 
             </div>
