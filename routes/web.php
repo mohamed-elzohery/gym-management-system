@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\LogoutController;
@@ -8,7 +9,7 @@ use App\Http\Controllers\NotfoundController;
 use App\Http\Controllers\TrainingPackagesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
-
+use App\Http\Controllers\GymController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,30 +23,36 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome')->middleware('auth');
+Route::get('/lol',function(){
+return "Hi";
+});
+
 
 
 // ################################# City ########################################
 Route::get('/cities', [CityController::class, 'list'])->name('city.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-
-//GET, 	/city/create, 	create, 	city.create
 Route::get('/cities/create', [CityController::class, 'create'])->name('city.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-//POST, 	/city, 	store,       	city.store
 Route::post('/cities', [CityController::class, 'store'])->name('city.store')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-
-//GET, 	/city/{photo}, 	show,    	city.show
 Route::get('/cities/{cityID}', [CityController::class, 'show'])->name('city.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-
-//GET 	/city/{cityID}/edit 	edit 	city.edit
 Route::get('/cities/{cityID}/edit', [CityController::class, 'edit'])->name('city.edit')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-//PUT/PATCH, 	/city/{cityID}, 	update, 	city.update
 Route::put('/cities/{cityID}', [CityController::class, 'update'])->name('city.update')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-
-//DELETE 	/city/{cityID} 	destroy 	city.destroy
 Route::delete('/cities/{cityID}', [CityController::class, 'destroy'])->name('city.destroy')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
 Route::get('/restoredCities', [CityController::class, 'showDeleted'])->name('city.showDeleted')->middleware('auth')->middleware('role:admin');
 Route::get('/restoredCities/{postID}', [CityController::class, 'restore'])->name('city.restored')->middleware('auth')->middleware('role:admin');
 
 
+#=======================================================================================#
+#			                           City Managers Routes                          	#
+#=======================================================================================#
+Route::controller(CityManagerController::class)->group(function () {
+    Route::get('/cityManager/create', 'create')->name('cityManager.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+    Route::post('/cityManager/store', 'store')->name('cityManager.store')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+    Route::get('/cityManager/list', 'list')->name('cityManager.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+    Route::get('/cityManager/edit/{id}', 'edit')->name('cityManager.edit')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+    Route::put('/cityManager/update/{id}', 'update')->name('cityManager.update')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+    Route::delete('/cityManager/{id}', 'deletecityManager')->name('cityManager.delete')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+    Route::get('/cityManager/show/{id}', 'show')->name('cityManager.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+});
 
 // ################################# Auth ##################################################
 Auth::routes();
@@ -68,3 +75,22 @@ Route::get('/trainingPackeges/package/{session}', [TrainingPackagesController::c
 Route::get('/trainingPackeges/{package}/edit', [TrainingPackagesController::class, 'edit'])->name('trainingPackeges.editPackege')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
 Route::delete('/trainingPackeges/{package}  ', [TrainingPackagesController::class, 'deletePackage'])->name('trainingPackeges.delete_package')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
 Route::put('/trainingPackeges/{package}', [TrainingPackagesController::class, 'update'])->name('trainingPackeges.update_package')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+#=======================================================================================#
+#			                        Gym Controller Routes                              	#
+#=======================================================================================#
+Route::controller(GymController::class)->group(function () {
+    Route::get('/gym/create', 'create')->name('gym.create')->middleware('auth');
+    Route::post('/gym/store', 'store')->name('gym.store')->middleware('auth');
+    Route::get('/gym/edit/{gym}', 'edit')->name('gym.edit')->middleware('auth');
+    Route::put('/gym/update/{gym}', 'update')->name('gym.update')->middleware('auth');
+    Route::delete('/gym/{id}', 'deleteGym')->name('gym.delete')->middleware('auth');
+    Route::get('/gym/list', 'list')->name('gym.list')->middleware('auth');
+    Route::get('/gym/show/{id}', 'show')->name('gym.show')->middleware('auth');
+});
+
+Route::get('/gym/training', function () {
+    return view('gym.training_session')->name('gym.session');
+})->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+
+#=======================================================================================#
+#

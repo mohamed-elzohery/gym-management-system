@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             UserSeeder::class,
             CitySeeder::class,
+            GymsSeeder::class,
+
         ]);
     }
 }
