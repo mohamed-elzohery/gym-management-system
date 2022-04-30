@@ -8,7 +8,8 @@ use App\Http\Controllers\NotfoundController;
 use App\Http\Controllers\TrainingPackagesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
-
+use App\Http\Controllers\GymController;
+use Illuminate\Database\Eloquent\Builder;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome')->middleware('auth');
+Route::get('/lol',function(){
+return "Hi";
+});
 
 
 // ################################# City ########################################
@@ -68,3 +72,22 @@ Route::get('/trainingPackeges/package/{session}', [TrainingPackagesController::c
 Route::get('/trainingPackeges/{package}/edit', [TrainingPackagesController::class, 'edit'])->name('trainingPackeges.editPackege')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
 Route::delete('/trainingPackeges/{package}  ', [TrainingPackagesController::class, 'deletePackage'])->name('trainingPackeges.delete_package')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
 Route::put('/trainingPackeges/{package}', [TrainingPackagesController::class, 'update'])->name('trainingPackeges.update_package')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+#=======================================================================================#
+#			                        Gym Controller Routes                              	#
+#=======================================================================================#
+Route::controller(GymController::class)->group(function () {
+    Route::get('/gym/create', 'create')->name('gym.create')->middleware('auth');
+    Route::post('/gym/store', 'store')->name('gym.store')->middleware('auth');
+    Route::get('/gym/edit/{gym}', 'edit')->name('gym.edit')->middleware('auth');
+    Route::put('/gym/update/{gym}', 'update')->name('gym.update')->middleware('auth');
+    Route::delete('/gym/{id}', 'deleteGym')->name('gym.delete')->middleware('auth');
+    Route::get('/gym/list', 'list')->name('gym.list')->middleware('auth');
+    Route::get('/gym/show/{id}', 'show')->name('gym.show')->middleware('auth');
+});
+
+Route::get('/gym/training', function () {
+    return view('gym.training_session')->name('gym.session');
+})->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+
+#=======================================================================================#
+#
