@@ -72,4 +72,71 @@ class CityManagerController extends Controller
 
         return redirect()->route('cityManager.list');
     }
+
+    #=======================================================================================#
+    #			                           Show Function                                	#
+    #=======================================================================================#
+    public function show($id)
+    {
+        $singleUser = User::findorfail($id);
+        return view("cityManager.show", ['singleUser' => $singleUser]);
+    }
+    #=======================================================================================#
+    #			                           Edit Function                                	#
+    #=======================================================================================#
+    public function edit($id)
+    {
+
+        $singleUser = User::find($id);
+        return view("cityManager.edit", ['singleUser' => $singleUser]);
+    }
+
+
+
+    #=======================================================================================#
+    #			                           Update Function                                	#
+    #=======================================================================================#
+    public function update(Request $request, $id)
+    {
+
+        $user = User::find($id);
+        $validated = $request->validate([
+            'name' => 'required|max:20',
+            'password' => 'required |min:6',
+            'email' => 'required|string|unique:users,email,' . $user->id,
+            'profile_image' => 'nullable|image|mimes:jpg,jpeg',
+            'national_id' => 'digits_between:10,17|numeric|unique:users,national_id,' . $user->id,
+        ]);
+
+
+        $user->name = $request->name;
+        $user->password = $request->password;
+        $user->email = $request->email;
+        $user->national_id = $request->national_id;
+
+
+        if ($request->hasFile('profile_image')) {
+            $image = $request->file('profile_image');
+            $name = time() . \Str::random(30) . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/imgs');
+            $image->move($destinationPath, $name);
+            $imageName = 'imgs/' . $name;
+            if (isset($user->profile_image))
+                File::delete(public_path('imgs/' . $user->profile_image));
+            $user->profile_image = $imageName;
+        }
+        $user->save();
+        return redirect()->route('cityManager.list');
+    }
+
+    #=======================================================================================#
+    #			                           Delete Function                                	#
+    #=======================================================================================#
+    public function deletecityManager($id)
+    {
+
+        $singleUser = User::findorfail($id);
+        $singleUser->delete();
+        return response()->json(['success' => 'Record deleted successfully!']);
+    }
 }
