@@ -9,7 +9,6 @@ use App\Models\Gym;
 use App\Models\City;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
-use Illuminate\Database\Eloquent\Builder;
 
 
 class GymController extends Controller
