@@ -101,6 +101,8 @@ class GymController extends Controller
             'cover_image' => 'nullable|image|mimes:jpg,jpeg',
         ]);
         $gym->name = $request->name;
+        $gym->city_id=$request->city_id;
+        // dd($gym);
 
         if ($request->hasFile('cover_image')) {
             $image = $request->file('cover_image');
@@ -112,6 +114,7 @@ class GymController extends Controller
                 File::delete(public_path('imgs/' . $gym->cover_image));
             $gym->cover_image = $imageName;
         }
+
         $gym->save();
         return redirect()->route('gym.list');
     }
