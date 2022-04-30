@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\LogoutController;
