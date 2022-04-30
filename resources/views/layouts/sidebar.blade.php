@@ -241,7 +241,7 @@
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="pages/layout/top-nav.html" class="nav-link">
+               <a href="{{ route(' TrainingSessions.listSessions')}}" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
                  <p>List sessions.</p>
                </a>

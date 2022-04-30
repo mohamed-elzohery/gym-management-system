@@ -10,6 +10,7 @@ use App\Http\Controllers\TrainingPackagesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\GymController;
+use App\Http\Controllers\TrainingController;
 
 /*
 |--------------------------------------------------------------------------
