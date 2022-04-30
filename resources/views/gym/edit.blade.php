@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Edit Gym</h1>
+                    <h1>Edit Gym Information</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -37,7 +37,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Edit</h3>
+                            <h3 class="card-title">Edit Form</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i class="fas fa-minus"></i>
@@ -46,13 +46,13 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name">Name : </label>
                                 <input type="text" id="name" class="form-control" value="{{old('name') ?? $gym->name}}" name="name">
                             </div>
 
 
                            <div class="form-group">
-                                <label class="form-label">Gym Manger</label>
+                                <label class="form-label">Gym Manger : </label>
                                 <select class="form-control" name="user_id">
                                      @foreach($users as $user)
                                 <option value="{{$user->id}}" @if($user->id ==$gym->user_id) selected @endif >{{$user->name}}</option>
@@ -60,7 +60,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="city">City</label>
+                                <label for="city">City : </label>
                                 <select required class=" form-control" name="city_id" id="city">
                                     <optgroup label="Available City">
                                         @foreach ($cities as $city)
@@ -73,7 +73,7 @@
 
 
                             <div class="form-group">
-                                <label class="form-label" for="image">Image Cover</label>
+                                <label class="form-label" for="image">Image Cover : </label>
                                 <input type="file" class="form-control" id="image" name="cover_image" value="{{old('cover_image') ?? asset($gym->cover_image)}}">
                             </div>
                         </div>
@@ -82,7 +82,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <a href="#" class="btn btn-secondary">Cancel</a>
+                    <a href="#" class="btn btn-primary">Cancel</a>
                     <input type="submit" value="Update" class="btn btn-success float-right">
                 </div>
             </div>
