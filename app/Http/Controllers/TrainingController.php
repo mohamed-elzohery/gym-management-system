@@ -37,7 +37,7 @@ class TrainingController extends Controller
         $trainingSessions = TrainingSession::all();
 
         $users = User::all();
-
+        $coaches = [];
         foreach ($users as $user) {
             if ($user->hasRole('coach')) {
                 $coaches[] = $user;
