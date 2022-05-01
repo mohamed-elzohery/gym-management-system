@@ -99,8 +99,14 @@
                         </p>
                     </li>
                     <li class="user-footer d-flex justify-content-between">
+<<<<<<< HEAD
+                        {{-- <div class="pull-left">
+                            <a href="{{ route('user.admin_profile', auth()->user()->id) }}" class="btn btn-default btn-flat">Profile</a>
+                        </div> --}}
+=======
                         <!-- <div class="pull-left">
                         </div> -->
+>>>>>>> d13928f1d1e317728d93e6738f08d38ebb9e88d7
                         <div class="pull-right">
                             <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">Sign out</a>
@@ -134,10 +140,18 @@
                 <div class="image">
                     <img src="{{asset(auth()->user()->profileImageFile)}}" class="img-circle elevation-2" alt="User Image">
                 </div>
+<<<<<<< HEAD
+                <div class="info">
+                    {{-- <a href="{{ route('user.admin_profile', auth()->user()->id) }}" class="d-block">
+                        {{ auth()->user()->name }}
+                    </a> --}}
+                </div>
+=======
                 <!-- <div class="info">
                         {{ auth()->user()->name }}
                     </a>
                 </div> -->
+>>>>>>> d13928f1d1e317728d93e6738f08d38ebb9e88d7
 
             </div>
         </div>
@@ -339,13 +353,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('TrainingSessions.listSessions')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p> All Sessions </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('TrainingSessions.training_session')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p> Add New </p>
                             </a>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user-layout')
 @section('content')
 <div class="content-wrapper">
          <h1>Stripe Payment Page - HackTheStuff</h1>
