@@ -32,15 +32,15 @@
                         </div>
                         <div class="col-12 col-sm-6 d-flex  align-items-center">
                             <div>
-                                <p class="my-3"> Id :{{ $singleGym->id }}</p>
-                                <p class="my-3"> Name :{{ $singleGym->name }}</p>
+                                <p class="my-3" style="font-weight:bold"> Id :{{ $singleGym->id }}</p>
+                                <p class="my-3" style="font-weight:bold"> Name :{{ $singleGym->name }}</p>
 
                                 @if ($singleGym->city == null)
                                     <p class="my-3">this gym has no city</p>
                                 @else
-                                    <p class="my-3">City : {{ $singleGym->city->name }}</p>
+                                    <p class="my-3" style="font-weight:bold">City : {{ $singleGym->city->name }}</p>
                                 @endif
-                                <p class="my-3">Created At : {{ $singleGym->created_at }}</p>
+                                <p class="my-3" style="font-weight:bold">Created At : {{ $singleGym->created_at }}</p>
                             </div>
                         </div>
                     </div>
