@@ -16,7 +16,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Edit Gym Information</h1>
+                    <h1>Update Gym Form</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -37,7 +37,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Edit Form</h3>
+                            <h3 class="card-title">Enter The Information of the Gym</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                                     <i class="fas fa-minus"></i>
@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-12">
                     <a href="#" class="btn btn-primary">Cancel</a>
-                    <input type="submit" value="Update" class="btn btn-success float-right">
+                    <input type="submit" value="Update" class="btn btn-primary float-right">
                 </div>
             </div>
         </form>
