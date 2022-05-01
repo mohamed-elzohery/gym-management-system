@@ -91,13 +91,13 @@ Route::put('/TrainingSessions/{session}', [TrainingController::class, 'update'])
 #			                        Gym Controller Routes                              	#
 #=======================================================================================#
 Route::controller(GymController::class)->group(function () {
-    Route::get('/gym/create', 'create')->name('gym.create')->middleware('auth');
-    Route::post('/gym/store', 'store')->name('gym.store')->middleware('auth');
-    Route::get('/gym/edit/{gym}', 'edit')->name('gym.edit')->middleware('auth');
-    Route::put('/gym/update/{gym}', 'update')->name('gym.update')->middleware('auth');
-    Route::delete('/gym/{id}', 'deleteGym')->name('gym.delete')->middleware('auth');
-    Route::get('/gym/list', 'list')->name('gym.list')->middleware('auth');
-    Route::get('/gym/show/{id}', 'show')->name('gym.show')->middleware('auth');
+    Route::get('/gym/create', 'create')->name('gym.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::post('/gym/store', 'store')->name('gym.store')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::get('/gym/edit/{gym}', 'edit')->name('gym.edit')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::put('/gym/update/{gym}', 'update')->name('gym.update')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::delete('/gym/{id}', 'deleteGym')->name('gym.delete')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::get('/gym/list', 'list')->name('gym.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::get('/gym/show/{id}', 'show')->name('gym.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
 });
 
 Route::get('/gym/training', function () {
@@ -108,13 +108,13 @@ Route::get('/gym/training', function () {
 #			                           Gym Managers Routes                          	#
 #=======================================================================================#
 Route::controller(GymManagerController::class)->group(function () {
-    Route::get('/gymManager/create', 'create')->name('gymManager.create')->middleware('auth');
-    Route::post('/gymManager/store', 'store')->name('gymManager.store')->middleware('auth');
-    Route::get('/gymManager/list', 'list')->name('gymManager.list')->middleware('auth');
-    Route::get('/gymManager/edit/{gym}', 'edit')->name('gymManager.edit')->middleware('auth');
-    Route::put('/gymManager/update/{gym}', 'update')->name('gymManager.update')->middleware('auth');
-    Route::delete('/gymManager/{id}', 'deletegymManager')->name('gymManager.delete')->middleware('auth');
-    Route::get('/gymManager/show/{id}', 'show')->name('gymManager.show')->middleware('auth');
+    Route::get('/gymManager/create', 'create')->name('gymManager.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::post('/gymManager/store', 'store')->name('gymManager.store')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::get('/gymManager/list', 'list')->name('gymManager.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::get('/gymManager/edit/{gym}', 'edit')->name('gymManager.edit')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::put('/gymManager/update/{gym}', 'update')->name('gymManager.update')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::delete('/gymManager/{id}', 'deletegymManager')->name('gymManager.delete')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
+    Route::get('/gymManager/show/{id}', 'show')->name('gymManager.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager');
 });
 #=======================================================================================#
 #
