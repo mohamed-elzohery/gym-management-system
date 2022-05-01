@@ -10,6 +10,7 @@ use App\Http\Controllers\TrainingPackagesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\GymController;
+use App\Http\Controllers\GymManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,5 +93,17 @@ Route::get('/gym/training', function () {
     return view('gym.training_session')->name('gym.session');
 })->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
 
+#=======================================================================================#
+#			                           Gym Managers Routes                          	#
+#=======================================================================================#
+Route::controller(GymManagerController::class)->group(function () {
+    Route::get('/gymManager/create', 'create')->name('gymManager.create')->middleware('auth');
+    Route::post('/gymManager/store', 'store')->name('gymManager.store')->middleware('auth');
+    Route::get('/gymManager/list', 'list')->name('gymManager.list')->middleware('auth');
+    Route::get('/gymManager/edit/{gym}', 'edit')->name('gymManager.edit')->middleware('auth');
+    Route::put('/gymManager/update/{gym}', 'update')->name('gymManager.update')->middleware('auth');
+    Route::delete('/gymManager/{id}', 'deletegymManager')->name('gymManager.delete')->middleware('auth');
+    Route::get('/gymManager/show/{id}', 'show')->name('gymManager.show')->middleware('auth');
+});
 #=======================================================================================#
 #
