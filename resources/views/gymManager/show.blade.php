@@ -14,38 +14,25 @@
     </section>
     <!-- Main content -->
     <section class="content">
-
-        <!-- Default box -->
-        <div class="card">
-
-            <div class="card-body p-0">
-                <table class="table table-striped projects" >
-                <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th> Gym Manager Name</th>
-                            <th>Email</th>
-                            <th>Profile Picture</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <tr>
-                            <td>{{$singleUser->id}}</td>
-                            <td>{{$singleUser->name}} </td>
-                            <td>{{$singleUser->email}} </td>
-                            <td><img alt="Avatar" class="table-avatar" src="{{$singleUser->profile_image}}"></td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-
-
-                    </tbody>
-                </table>
+<div class="card card-solid">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-6">
+                            <h6 class="d-inline-block d-sm-none">Gym Manager Name : </h6>
+                            <img class="img-fluid" src="{{ asset($singleUser->profile_image) }}">
+                        </div>
+                        <div class="col-12 col-sm-6 d-flex  align-items-center">
+                            <div>
+                                <p class="my-3" style="font-weight:bold"> Id :{{ $singleUser->id }}</p>
+                                <p class="my-3" style="font-weight:bold"> Name :{{ $singleUser->name }}</p>
+                                <p class="my-3" style="font-weight:bold"> Email :{{ $singleUser->email }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
+
 
     </section>
 </div>
