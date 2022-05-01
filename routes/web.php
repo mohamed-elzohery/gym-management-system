@@ -104,4 +104,8 @@ Route::get('/gym/training', function () {
 })->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
 
 #=======================================================================================#
-#
+#                                   Ban users                                           #
+#=======================================================================================#
+Route::get('/banUser/{userID}',[UserController::class,'banUser'])->name('user.banUser')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+Route::get('/listBanned',[UserController::class,'listBanned'])->name('user.listBanned')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+Route::PATCH('/banUser/{userID}',[UserController::class,'unban'])->name('user.unban')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
