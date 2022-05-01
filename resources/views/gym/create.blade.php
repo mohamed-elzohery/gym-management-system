@@ -19,7 +19,7 @@
                         </div>
                     @endif
                     <div class="col-sm-6">
-                        <h1>New Gym</h1>
+                        <h1>New Gym Form</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -42,7 +42,7 @@
                         @endif
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Create</h3>
+                                <h3 class="card-title">Enter The Information of the Gym</h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                         title="Collapse">
@@ -52,11 +52,11 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
+                                    <label for="name">Name : </label>
                                     <input type="text" id="name" class="form-control" required placeholder="Gym Name" name="name">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Gym Manger</label>
+                                    <label class="form-label">Gym Manger : </label>
                                     <select class="form-control" name="user_id">
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -64,7 +64,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="city">City</label>
+                                    <label for="city">City : </label>
                                     <select required class=" form-control" name="city_id" id="city">
                                         <optgroup label="Available City">
                                             @foreach ($cities as $city)
@@ -76,7 +76,7 @@
 
 
                                 <div class="form-group">
-                                    <label class="form-label" for="image">Image Cover</label>
+                                    <label class="form-label" for="image">Image Cover : </label>
                                     <input type="file" class="form-control" id="image" name="cover_image">
                                 </div>
                             </div>
@@ -85,8 +85,8 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <a href="#" class="btn btn-secondary">Cancel</a>
-                        <input type="submit" value="Save Changes" class="btn btn-success float-right">
+                        <a href="#" class="btn btn-primary">Cancel</a>
+                        <input type="submit" value="Save Changes" class="btn btn-primary float-right">
                     </div>
                 </div>
             </form>
