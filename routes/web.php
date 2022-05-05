@@ -12,7 +12,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\GymController;
 use App\Http\Controllers\GymManagerController;
 use App\Http\Controllers\TrainingController;
-
+use App\Http\Controllers\CoachController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +30,8 @@ return "Hi";
 });
 
 
-
+//##################################coach########################################
+Route::get('/coach/list', 'list')->name('coach.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
 // ################################# City ########################################
 Route::get('/cities', [CityController::class, 'list'])->name('city.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
 Route::get('/cities/create', [CityController::class, 'create'])->name('city.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
