@@ -18,4 +18,11 @@ class CoachController extends Controller
             return view('empty');
         }
         return view("coach.list", ['coaches' => $coachesFromDB]);
-    }}
+    }
+//show fun :-
+    public function show($id)
+    {
+        $singleCoach = User::find($id);
+        return view("coach.show", ['singleCoach' => $singleCoach]);
+    }
+}
