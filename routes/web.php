@@ -31,7 +31,10 @@ return "Hi";
 
 
 //##################################coach########################################
-Route::get('/coach/list', 'list')->name('coach.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+Route::controller(CoachController::class)->group(function () {
+    Route::get('/coach/list', 'list')->name('coach.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+    Route::get('/coach/show/{coach}', 'show')->name('coach.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+});
 // ################################# City ########################################
 Route::get('/cities', [CityController::class, 'list'])->name('city.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
 Route::get('/cities/create', [CityController::class, 'create'])->name('city.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
