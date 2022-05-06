@@ -25,4 +25,14 @@ class CoachController extends Controller
         $singleCoach = User::find($id);
         return view("coach.show", ['singleCoach' => $singleCoach]);
     }
+//create fun :-
+public function create()
+{
+    $coaches = User::all();
+    $cities = City::all();
+    return view('coach.create', [
+        'users' => $coaches,
+        'cities' => $cities,
+    ]);
+}
 }
