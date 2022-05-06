@@ -72,4 +72,34 @@ public function edit($id)
     $singleCoach = User::find($id);
     return view("coach.edit", ['coach' => $singleCoach, 'users' => $users]);
 }
+//store fun :-
+public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'min:2'],
+            'email' => ['required'],
+            'profile_image' => ['nullable', 'mimes:jpg,jpeg'],
+            'city_id' => ['required'],
+        ]);
+
+        if ($request->hasFile('profile_image') == null) {
+            $imageName = 'imgs/defaultImg.jpg';
+        } else {
+            $image = $request->file('profile_image');
+            $name = time() . \Str::random(30) . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/imgs');
+            $image->move($destinationPath, $name);
+            $imageName = 'imgs/' . $name;
+        }
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->city_id = $request->city_id;
+        $user->profile_image = $imageName;
+        $user->assignRole('coach');
+        $user->save();
+        return redirect()->route('coach.list');
+    }
+
 }
