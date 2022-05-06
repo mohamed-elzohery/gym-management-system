@@ -65,5 +65,11 @@ class CoachController extends Controller
         $user->save();
         return redirect()->route('coach.list');
     }
-
+//edit fun :-
+public function edit($id)
+{
+    $users = User::all();
+    $singleCoach = User::find($id);
+    return view("coach.edit", ['coach' => $singleCoach, 'users' => $users]);
+}
 }
