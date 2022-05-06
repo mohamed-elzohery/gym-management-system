@@ -35,4 +35,14 @@ public function create()
         'cities' => $cities,
     ]);
 }
+//update fun :-
+public function update(Request $request, $id)
+    {
+
+        $user = User::find($id);
+        $validated = $request->validate([
+            'name' => 'required|max:50',
+            'email' => 'required|string|unique:users,email,' . $user->id,
+            'profile_image' => 'mimes:jpg,jpeg',
+        ]);
 }
