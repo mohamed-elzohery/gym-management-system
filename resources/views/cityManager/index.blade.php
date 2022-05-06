@@ -1,4 +1,4 @@
-@extends('layouts.datatable')
+@extends('layouts.user-layout')
 
 @section('title')
 City Managers
