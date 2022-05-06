@@ -1,6 +1,6 @@
 @extends('layouts.user-layout')
 
-@section('manages')
+@section('content')
 <div class="row mb-3">
     <label for="city" class="col-sm-12 col-md-2 col-form-label">{{ __('City') }}</label>
 
