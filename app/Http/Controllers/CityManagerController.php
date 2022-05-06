@@ -22,25 +22,25 @@ class CityManagerController extends Controller
             $cityManager = CityManager::with('user')->get();
             return Datatables::of($cityManager)->addIndexColumn()->make(true);
         }
-        return view('menu.city_manager.index');
+        return view('cityManager.index');
     }
 
     public function create()
     {
         $cities = City::leftJoin('city_managers', 'cities.id', '=', 'city_managers.city_id')->where('user_id', null)->get();
-        return view('menu.city_manager.create', compact('cities'));
+        return view('cityManager.create', compact('cities'));
     }
 
     public function edit($id)
     {
         $user = User::find($id);
         $cities = City::leftJoin('city_managers', 'cities.id', '=', 'city_managers.city_id')->where('user_id', null)->get();
-        return view('menu.city_manager.edit', compact('user', 'cities'));
+        return view('cityManager.edit', compact('user', 'cities'));
     }
 
     public function show($id)
     {
         $user = User::find($id);
-        return view('menu.city_manager.show', compact('user'));
+        return view('cityManager.show', compact('user'));
     }
 }

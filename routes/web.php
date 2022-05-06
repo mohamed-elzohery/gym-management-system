@@ -25,10 +25,11 @@ use App\Http\Controllers\CoachController;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome')->middleware('auth');
-Route::get('/lol',function(){
-return "Hi";
+Route::get('/lol', function () {
+    return "Hi";
 });
 
+Auth::routes();
 
 //##################################coach########################################
 Route::controller(CoachController::class)->group(function () {
@@ -41,32 +42,20 @@ Route::controller(CoachController::class)->group(function () {
     Route::get('/coach/show/{coach}', 'show')->name('coach.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
 });
 // ################################# City ########################################
-Route::get('/cities', [CityController::class, 'list'])->name('city.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-Route::get('/cities/create', [CityController::class, 'create'])->name('city.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-Route::post('/cities', [CityController::class, 'store'])->name('city.store')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-Route::get('/cities/{cityID}', [CityController::class, 'show'])->name('city.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-Route::get('/cities/{cityID}/edit', [CityController::class, 'edit'])->name('city.edit')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-Route::put('/cities/{cityID}', [CityController::class, 'update'])->name('city.update')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-Route::delete('/cities/{cityID}', [CityController::class, 'destroy'])->name('city.destroy')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-Route::get('/restoredCities', [CityController::class, 'showDeleted'])->name('city.showDeleted')->middleware('auth')->middleware('role:admin');
-Route::get('/restoredCities/{postID}', [CityController::class, 'restore'])->name('city.restored')->middleware('auth')->middleware('role:admin');
 
-
-#=======================================================================================#
-#			                           City Managers Routes                          	#
-#=======================================================================================#
-Route::controller(CityManagerController::class)->group(function () {
-    Route::get('/cityManager/create', 'create')->name('cityManager.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-    Route::post('/cityManager/store', 'store')->name('cityManager.store')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-    Route::get('/cityManager/list', 'list')->name('cityManager.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-    Route::get('/cityManager/edit/{id}', 'edit')->name('cityManager.edit')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-    Route::put('/cityManager/update/{id}', 'update')->name('cityManager.update')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-    Route::delete('/cityManager/{id}', 'deletecityManager')->name('cityManager.delete')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
-    Route::get('/cityManager/show/{id}', 'show')->name('cityManager.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+Route::group(['middleware' => ['auth', 'logs-out-banned-user', 'role:admin|cityManager|gymManager']], function () {
+    Route::prefix('/cities')->group(function () {
+        Route::get('/', [CityController::class, 'index'])->name('cities.index');
+    });
+    Route::group(['prefix' => '/city-managers', 'middleware' => ['role:admin']], function () {
+        Route::get('/', [CityManagerController::class, 'index'])->name('city-managers.index');
+        Route::get('/create', [CityManagerController::class, 'create'])->name('city-managers.create');
+        Route::get('/{id}', [CityManagerController::class, 'show'])->name('city-managers.show');
+        Route::get('/{id}/edit', [CityManagerController::class, 'edit'])->name('city-managers.edit');
+    });
 });
 
 // ################################# Auth ##################################################
-Auth::routes();
 Route::get('/register', [NotfoundController::class, 'unAuth'])->name('500')->middleware('auth');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('auth');;
@@ -129,6 +118,6 @@ Route::controller(GymManagerController::class)->group(function () {
 #
 #                                   Ban users                                           #
 #=======================================================================================#
-Route::get('/banUser/{userID}',[UserController::class,'banUser'])->name('user.banUser')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
-Route::get('/listBanned',[UserController::class,'listBanned'])->name('user.listBanned')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
-Route::PATCH('/banUser/{userID}',[UserController::class,'unban'])->name('user.unban')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+Route::get('/banUser/{userID}', [UserController::class, 'banUser'])->name('user.banUser')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+Route::get('/listBanned', [UserController::class, 'listBanned'])->name('user.listBanned')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
+Route::PATCH('/banUser/{userID}', [UserController::class, 'unban'])->name('user.unban')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin|cityManager|gymManager');
