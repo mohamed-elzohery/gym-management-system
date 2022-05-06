@@ -101,5 +101,11 @@ public function store(Request $request)
         $user->save();
         return redirect()->route('coach.list');
     }
-
+//delete fun:-
+public function deleteCoach($id)
+{
+    $singleCoach = User::find($id);
+    $singleCoach->delete();
+    return response()->json(['success' => 'Record deleted successfully!']);
+}
 }
