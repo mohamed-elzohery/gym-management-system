@@ -60,3 +60,5 @@
 ![user](https://user-images.githubusercontent.com/43971904/167266471-bcff1141-50ec-4c80-9ff9-5f5e635cbfdd.png)
 
 ![Screenshot from 2022-05-06 17-27-05](https://user-images.githubusercontent.com/43971904/167266507-510f97a5-c6b3-4fc7-9f0b-88f7f7b6b51b.png)
+![attendingSession](https://user-images.githubusercontent.com/43971904/167266543-b371bf60-6ad0-406e-8360-6c8c8788bb4f.png)
+![attends](https://user-images.githubusercontent.com/43971904/167266553-f1bd1d1d-6b1a-469e-9a9d-a485f9218da3.png)
