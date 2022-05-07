@@ -43,17 +43,15 @@ Route::controller(CoachController::class)->group(function () {
 });
 // ################################# City ########################################
 
-Route::group(['middleware' => ['auth', 'logs-out-banned-user', 'role:admin|cityManager|gymManager']], function () {
-    Route::prefix('/cities')->group(function () {
-        Route::get('/', [CityController::class, 'index'])->name('cities.index');
-    });
-    Route::group(['prefix' => '/city-managers', 'middleware' => ['role:admin']], function () {
-        Route::get('/', [CityManagerController::class, 'index'])->name('city-managers.index');
-        Route::get('/create', [CityManagerController::class, 'create'])->name('city-managers.create');
-        Route::get('/{id}', [CityManagerController::class, 'show'])->name('city-managers.show');
-        Route::get('/{id}/edit', [CityManagerController::class, 'edit'])->name('city-managers.edit');
-    });
-});
+Route::get('/cities', [CityController::class, 'list'])->name('city.list')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+Route::get('/cities/create', [CityController::class, 'create'])->name('city.create')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+Route::post('/cities', [CityController::class, 'store'])->name('city.store')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+Route::get('/cities/{cityID}', [CityController::class, 'show'])->name('city.show')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+Route::get('/cities/{cityID}/edit', [CityController::class, 'edit'])->name('city.edit')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+Route::put('/cities/{cityID}', [CityController::class, 'update'])->name('city.update')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+Route::delete('/cities/{cityID}', [CityController::class, 'destroy'])->name('city.destroy')->middleware('auth')->middleware('logs-out-banned-user')->middleware('role:admin');
+Route::get('/restoredCities', [CityController::class, 'showDeleted'])->name('city.showDeleted')->middleware('auth')->middleware('role:admin');
+Route::get('/restoredCities/{postID}', [CityController::class, 'restore'])->name('city.restored')->middleware('auth')->middleware('role:admin');
 
 // ################################# Auth ##################################################
 Route::get('/register', [NotfoundController::class, 'unAuth'])->name('500')->middleware('auth');
