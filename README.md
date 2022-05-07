@@ -12,7 +12,8 @@
   <p align="center">
     A Laravel PHP Web Application based on rules like Admin, City Manager, Gym Manager. All features are explained below.
   </p>
-</div>
+</div>![Screenshot from 2022-05-06 17-13-40](https://user-images.githubusercontent.com/43971904/167266336-935260ac-39b1-4c88-8a43-604ca204c298.png)
+
 
 <!-- ABOUT THE PROJECT -->
 
@@ -53,3 +54,7 @@
     ```sh
     php artisan create:admin
     ```
+    
+    
+    ![Screenshot from 2022-05-06 17-13-40](https://user-images.githubusercontent.com/43971904/167266381-6ff7c57a-13b5-4683-a846-5fd81d7b42a9.png)
+
