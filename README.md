@@ -62,5 +62,5 @@
 ![Screenshot from 2022-05-06 17-27-05](https://user-images.githubusercontent.com/43971904/167266507-510f97a5-c6b3-4fc7-9f0b-88f7f7b6b51b.png)
 ![attendingSession](https://user-images.githubusercontent.com/43971904/167266543-b371bf60-6ad0-406e-8360-6c8c8788bb4f.png)
 ![attends](https://user-images.githubusercontent.com/43971904/167266553-f1bd1d1d-6b1a-469e-9a9d-a485f9218da3.png)
-![Screenshot from 2022-05-06 17-18-30](https://user-images.githubusercontent.com/43971904/167![user](https://user-images.githubusercontent.com/43971904/167266721-7435040a-8c25-4945-af85-dd7b66fb943c.png)
-266695-de07a62e-dbe7-4653-a6fe-afe7bbf7137e.png)
+
+![user](https://user-images.githubusercontent.com/43971904/167266781-069a00b5-1576-45f4-a49c-25cf26ebb2bd.png)
