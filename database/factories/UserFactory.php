@@ -31,7 +31,7 @@ class UserFactory extends Factory
             'last_login_at' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
             // 'total_sessions' => rand(80, 120),
             // 'remain_session' => rand(10, 80),
-            'city_id' => rand(1, 24),
+            'city_id' => rand(1, 50),
             'gym_id' => rand(1, 50),
         ];
     }
